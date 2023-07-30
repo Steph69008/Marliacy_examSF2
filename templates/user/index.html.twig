@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les membres du Staff{% endblock %}
+
+{% block body %}
+<div style="
+        background-image: url('{{ asset('/uploads/images/Rockstar.jpg') }}');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        ">
+
+    <h1 class="text-primary">Les membres du Staff</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th >Id</th>
+            <th >Nom</th>
+            <th >Prénom</th>
+            <th >Image</th>
+            <th >Secteur</th>
+            <th >Contrat</th>
+            <th >Date de sortie</th>
+            {% if is_granted('ROLE_RH') %}
+                <th >actions</th>
+            {% endif %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td class="text-primary">{{ user.id }}</td>
+                <td class="text-primary">{{ user.name }}</td>
+                <td class="text-primary">{{ user.firstname }}</td>
+                <td class="text-primary"><img src="{{ asset('uploads/user/'~user.picture) }}" width="45px" height="45px"></td>
+                <td class="text-primary">{{ user.sector }}</td>
+                <td class="text-primary">{{ user.contract }}</td>
+                <td class="text-primary">{{ user.releaseDate ? user.releaseDate|date('Y-m-d') : '' }}</td>
+                {% if is_granted('ROLE_RH') %}
+                    <td class="text-primary">
+                        <a href="{{ path('app_user_show', {'id': user.id}) }}">+ de détails</a>
+                        <br>
+                        <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+                    </td>
+                {% endif %}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_new') }}">Créer un nouveau membre Rockstar !</a>
+</div>
+
+{% endblock %}
+
+
+
+
