@@ -50,7 +50,7 @@ class UserController extends AbstractController
             $image = $form->get('picture')->getData();
             if (is_null($image)) {
                 $error = new FormError("Veuillez uploader une image");
-                $form->get('photo')->addError($error);
+                $form->get('picture')->addError($error);
             } else {
                 $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($originalFilename);

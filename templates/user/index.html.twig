@@ -34,18 +34,18 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td class="text-primary">{{ user.id }}</td>
-                <td class="text-primary">{{ user.name }}</td>
-                <td class="text-primary">{{ user.firstname }}</td>
-                <td class="text-primary"><img src="{{ asset('uploads/user/'~user.picture) }}" width="45px" height="45px"></td>
-                <td class="text-primary">{{ user.sector }}</td>
-                <td class="text-primary">{{ user.contract }}</td>
-                <td class="text-primary">{{ user.releaseDate ? user.releaseDate|date('Y-m-d') : '' }}</td>
+                <td class="text-dark">{{ user.id }}</td>
+                <td class="text-dark">{{ user.name }}</td>
+                <td class="text-dark">{{ user.firstname }}</td>
+                <td class="text-dark"><img src="{{ asset('uploads/user/'~user.picture) }}" width="45px" height="45px"></td>
+                <td class="text-dark">{{ user.sector }}</td>
+                <td class="text-dark">{{ user.contract }}</td>
+                <td class="text-dark">{{ user.releaseDate ? user.releaseDate|date('Y-m-d') : '' }}</td>
                 {% if is_granted('ROLE_RH') %}
-                    <td class="text-primary">
-                        <a href="{{ path('app_user_show', {'id': user.id}) }}">+ de détails</a>
+                    <td class="text-dark">
+                        <a class="btn btn-dark" href="{{ path('app_user_show', {'id': user.id}) }}">+ de détails</a>
                         <br>
-                        <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+                        <a class="btn btn-light" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
                     </td>
                 {% endif %}
             </tr>
@@ -57,7 +57,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_user_new') }}">Créer un nouveau membre Rockstar !</a>
+    <a class="btn btn-dark" href="{{ path('app_user_new') }}">Créer un nouveau membre Rockstar !</a>
 </div>
 
 {% endblock %}

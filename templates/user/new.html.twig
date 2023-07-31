@@ -3,9 +3,20 @@
 {% block title %}Nouveau staff{% endblock %}
 
 {% block body %}
+<div style="
+        background-image: url('{{ asset('/uploads/images/Rockstar.jpg') }}');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        ">
     <h1>Créez le nouveau membre</h1>
 
     {{ include('user/_form.html.twig') }}
 
     <a href="{{ path('app_user_index') }}">Retour à la liste</a>
+    </div>
 {% endblock %}
