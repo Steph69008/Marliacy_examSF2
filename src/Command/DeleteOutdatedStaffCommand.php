@@ -33,7 +33,7 @@ class DeleteOutdatedStaffCommand extends Command
         // Parcourir tous les utilisateurs
         foreach($users as $user) {
             // Si l'utilisateur a une date expirée ET que le rôle de l'utilisateur n'est pas 'RH'
-            if ($user->getReleaseDate() < $currentDate && in_array('ROLE_USER', $user->getRoles())) {
+            if ($user->getReleaseDate() < $currentDate && !in_array('ROLE_RH', $user->getRoles())) {
                 // Supprimer l'utilisateur
                 $this->entityManager->remove($user);
             }
